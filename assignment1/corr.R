@@ -16,19 +16,15 @@ corr <- function(directory, threshold = 0) {
     completeCasesOld <- subset(data, complete.cases(data))
     completeCases <- subset(data,  (!is.na(data$sulfate) & !is.na(data$nitrate)))
     
-    if(length(completeCases[,1]) != length(completeCasesOld[,1])) {
-      print("MISMATCH!!!")
-    }
-    
     
     if(length(completeCases[,1]) > threshold) {
       runningVals <- append(runningVals, cor(completeCases$sulfate, completeCases$nitrate))
     }    
   }
   
-  if(length(runningVals) == 0) {
-    runningVals <- c(0)
-  }
+  #if(length(runningVals) == 0) {
+  #  runningVals <- c(0)
+  #}
   
   runningVals
 }
